@@ -1,0 +1,16 @@
+@startuml
+actor Admin
+actor Backend
+left to right direction
+skinparam packageStyle rectangle
+rectangle EditingChat{
+	actor App
+	Admin -> (Edit settings) : Edit settings/Invite users
+	(Edit settings) -> App
+	App -> (Changed settings array) : App collects and sends options data 
+	(Changed settings array) --> Backend
+	Backend --> (New chat settings) : Backend saves new settings and returns them
+	(New chat settings) -> App : Apply settings on client
+	App -> (Show chat)
+}
+@enduml
